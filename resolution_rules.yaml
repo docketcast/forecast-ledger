@@ -1,12 +1,12 @@
 # Resolution rules for Supreme Court forecasts.
 #
-# DRAFT: not yet frozen. These rules must be frozen (frozen_at set, file committed
-# with a signed commit) BEFORE the first forecast is published. After freezing,
-# changes create a new version that applies only to forecasts published after it;
-# no rule change is ever applied retroactively to a published forecast.
+# These rules take effect when frozen_at is set and the file is published in the
+# public ledger with a signed commit, before any forecast under this version.
+# Once frozen, changes create a new version that applies only to forecasts
+# published after it; no rule change is ever applied retroactively.
 
 version: 1
-frozen_at: null
+frozen_at: "2026-09-23T16:28:39Z"
 target: petitioner_win   # 1 = petitioner wins, 0 = petitioner loses, void = not scored
 
 # Source of truth: the judgment line of the Court's opinion as issued on the decision
