@@ -90,9 +90,11 @@ style="max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px
 ledger</a>. Each forecast record
 contains the SHA-256 hash of the one before it, so editing or deleting any record breaks the chain
 (<code>python verify.py forecasts.jsonl</code>). Each publishing batch is timestamped in the Bitcoin
-blockchain with OpenTimestamps (<code>ots verify batches/&lt;file&gt;.ots</code>), which shows the forecast
-existed before the ruling. Resolutions follow the frozen rules in <code>resolution_rules_v&lt;N&gt;.yaml</code>.</p>
-<footer>Generated 2026-09-23 21:30 UTC from the ledger state with latest forecast record
+blockchain with OpenTimestamps, which shows the forecast existed before the ruling: upload a batch's
+<code>.ots</code> proof and its <code>.txt</code> file at <a href="https://opentimestamps.org">opentimestamps.org</a>
+(no software needed), or run <code>ots verify</code> with a Bitcoin node. New proofs read "pending" for a few
+hours until Bitcoin confirms them. Resolutions follow the frozen rules in <code>resolution_rules_v&lt;N&gt;.yaml</code>.</p>
+<footer>Generated 2026-09-23 21:32 UTC from the ledger state with latest forecast record
 <span class="hash">0c52a8f5a583a892</span> and latest resolution record
 <span class="hash">(empty)</span>. Rebuild it from the ledger with the public code to check.</footer>
 </main></body></html>
