@@ -1,0 +1,56 @@
+# Resolution rules for Supreme Court forecasts.
+#
+# DRAFT: not yet frozen. These rules must be frozen (frozen_at set, file committed
+# with a signed commit) BEFORE the first forecast is published. After freezing,
+# changes create a new version that applies only to forecasts published after it;
+# no rule change is ever applied retroactively to a published forecast.
+
+version: 1
+frozen_at: null
+target: petitioner_win   # 1 = petitioner wins, 0 = petitioner loses, void = not scored
+
+# Source of truth: the judgment line of the Court's opinion as issued on the decision
+# date (supremecourt.gov slip opinion). CourtListener is the automated check. If the two
+# disagree, or the text matches no rule, the case goes to manual review.
+source_of_truth: supremecourt.gov slip opinion, judgment line
+unit: docket   # consolidated cases with different dispositions resolve separately
+
+rules:
+  affirmed: 0
+  affirmed_by_equally_divided_court: 0
+  reversed: 1
+  reversed_and_remanded: 1
+  vacated: 1
+  vacated_and_remanded: 1
+  reversed_or_vacated_in_part: 1          # any partial reversal or vacatur; flagged mixed
+  affirmed_in_part_reversed_in_part: 1    # decided 2026-09-23; flagged mixed
+  gvr_after_grant: 1                      # judgment vacated and remanded; flagged
+  vacated_as_moot_munsingwear: 1          # decided 2026-09-23: literal vacatur; flagged
+  dismissed_as_improvidently_granted: 0   # decided 2026-09-23: lower-court judgment stands
+  writ_dismissed_other: 0                 # e.g. dismissed as moot: lower-court judgment stands
+  settled_or_dismissed_by_agreement: void # Rule 46 dismissal before decision: no ruling
+  removed_from_calendar_or_cert_vacated: void
+  modified: manual_review
+  other: manual_review
+
+# Rulings changed after the decision date (rehearing, later modification) are ignored.
+# Only the judgment as first issued resolves the forecast.
+post_decision_changes: ignored
+
+manual_review:
+  # The resolver never guesses. Every manual resolution is logged with the rule applied,
+  # the reviewer, a timestamp and a one-line reason, and is itself hashed and timestamped.
+  required_fields: [rule, reviewer, reviewed_at, reason]
+
+scope:
+  included: argued merits cases (and cases granted plenary review that are later
+    decided without argument)
+  excluded: [original jurisdiction, certified questions, applications / emergency docket]
+
+rationale:
+  dismissed_as_improvidently_granted: >
+    Scored 0, not voided: the lower-court judgment stands, so the petitioner has not won.
+    Scoring keeps the rule literal, and nobody can claim cases were voided selectively.
+  vacated_as_moot_munsingwear: >
+    Scored 1 to match the target definition ("reversed or vacated") literally, and
+    flagged, because a mootness vacatur is not a merits win.
