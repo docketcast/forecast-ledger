@@ -14,7 +14,8 @@ advice, or a recommendation to take any action.
 |---|---|
 | `forecasts.jsonl` | One forecast per line. Never edited; new forecasts are appended. |
 | `resolutions.jsonl` | How each forecast resolved, and under which rule. |
-| `resolution_rules.yaml` | The rules for resolving forecasts, fixed before publication. |
+| `resolution_rules.yaml` | The current rules for resolving forecasts, fixed before publication. |
+| `resolution_rules_v<N>.yaml` | Every frozen version. Each forecast records the version it is resolved under. |
 | `batches/*.txt`, `*.ots` | Record hashes for each publishing batch, with OpenTimestamps proofs. |
 | `verify.py` | Hash-chain verifier (Python standard library only). |
 
@@ -32,6 +33,19 @@ snapshot hash, code commit and resolution-rules version.
    ([OpenTimestamps](https://opentimestamps.org)) and compare the attested time
    with the decision date. Check the record's hash is listed in that batch file.
 3. **Who published it:** commits are signed; GitHub shows them as verified.
+
+## Rules versions
+
+- **v1** (frozen 2026-09-23 16:28:39 UTC) applies to the October 2026 forecasts.
+- **v2** changes no scoring rule. It names the Court's docket judgment entry as the
+  automated check (v1 named CourtListener, whose API needs a commercial agreement for
+  this use) and states the unit as one argued case resolved by its lead docket. See
+  `changes_from_v1` in the v2 file.
+
+For forecasts under v1, the outcome still comes from the slip opinion's judgment line
+and is cross-checked against the docket. CourtListener's website is also checked by
+hand before each v1 resolution is published, and the resolution record says so. None
+of the v1 cases is consolidated, so the unit wording makes no difference to them.
 
 ## Scoring
 
