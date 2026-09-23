@@ -5,17 +5,15 @@
 # Once frozen, changes create a new version that applies only to forecasts
 # published after it; no rule change is ever applied retroactively.
 
-version: 2
-frozen_at: "2026-09-23T16:50:38Z"
+version: 1
+frozen_at: "2026-09-23T16:28:39Z"
 target: petitioner_win   # 1 = petitioner wins, 0 = petitioner loses, void = not scored
 
 # Source of truth: the judgment line of the Court's opinion as issued on the decision
-# date (supremecourt.gov slip opinion). The automated check is the judgment entry on
-# the Court's docket (supremecourt.gov). Both are read independently; if they disagree,
-# or either matches no rule, the case goes to manual review.
+# date (supremecourt.gov slip opinion). CourtListener is the automated check. If the two
+# disagree, or the text matches no rule, the case goes to manual review.
 source_of_truth: supremecourt.gov slip opinion, judgment line
-automated_check: supremecourt.gov docket, judgment entry
-unit: argued case   # one forecast per argued case; consolidated cases resolve by the lead docket
+unit: docket   # consolidated cases with different dispositions resolve separately
 
 rules:
   affirmed: 0
@@ -48,15 +46,6 @@ scope:
   included: argued merits cases (and cases granted plenary review that are later
     decided without argument)
   excluded: [original jurisdiction, certified questions, applications / emergency docket]
-
-changes_from_v1:
-  - "Automated check: the Court's docket judgment entry replaces CourtListener, whose API
-    requires a commercial agreement for this use. The source of truth is unchanged."
-  - "Unit: one argued case, resolved by its lead docket, matching how forecasts are made.
-    v1 said consolidated dockets with different dispositions resolve separately."
-  - "Scoring rules (the outcome for each disposition) are unchanged."
-  - "Forecasts published under v1 are resolved under v1. For them, CourtListener's website
-    is also checked by hand before a resolution is published."
 
 rationale:
   dismissed_as_improvidently_granted: >
