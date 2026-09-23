@@ -33,9 +33,12 @@ snapshot hash, code commit and resolution-rules version.
    Each record contains the SHA-256 hash of the one before it, so any change to
    an earlier record breaks every later hash.
 2. **Existed before the ruling:** each batch's `.ots` file anchors its record
-   hashes in the Bitcoin blockchain. Run `ots verify batches/<file>.txt.ots`
-   ([OpenTimestamps](https://opentimestamps.org)) and compare the attested time
-   with the decision date. Check the record's hash is listed in that batch file.
+   hashes in the Bitcoin blockchain. Without any software, upload the `.ots` file
+   and its `.txt` batch file at [opentimestamps.org](https://opentimestamps.org);
+   with a Bitcoin node, run `ots verify batches/<file>.txt.ots`. Compare the attested
+   time with the decision date, and check the record's hash is listed in the batch
+   file. Proofs show "pending" for a few hours after publishing, until Bitcoin
+   confirms them.
 3. **Who published it:** commits are signed; GitHub shows them as verified.
 
 ## Rules versions
