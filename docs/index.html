@@ -85,6 +85,25 @@ differs from the docket. Using the docket's dates: -0.0116 [-0.0208, -0.0016].</
 <p><img src="backtest_reliability.png" alt="Reliability diagrams for the base rate, M1 and M2 models"
 style="max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff"></p>
 
+<h2>Historical backtest: federal courts of appeals</h2>
+<div class="banner">Not part of the live record, and no appeals forecasts are published yet. Plan
+<a href="https://github.com/docketcast/forecast-ledger/blob/main/preregistration/m5-appeals-backtest.md">pre-registered</a> and timestamped
+before any result. Argued civil appeals in the Second, Fifth and Ninth Circuits, fiscal years 2014–2024.</div>
+<p><b>Met the pre-registered success criterion, with a small improvement.</b>
+Among appeals with a known panel (12,720), the model with filing facts and panel features
+compared with the base rate: -0.0020 [-0.0030, -0.0010] in Brier score. The panel itself added -0.0002 [-0.0005, +0.0001] over filing facts alone,
+not a detectable gain. Across all
+19,383 appeals, filing facts alone did not beat the
+base rate (-0.0004 [-0.0024, +0.0020]).</p>
+<div class="table-wrap"><table><tr><th>Forecaster (appeals with a known panel)</th><th class="num">Brier</th>
+<th class="num">Log loss</th><th class="num">Accuracy</th><th class="num">Calibration error</th></tr><tr><td>Base rate (circuit × case type)</td><td class="num">0.2256</td><td class="num">0.6428</td><td class="num">64.2%</td><td class="num">0.010</td></tr><tr><td>Model: filing facts</td><td class="num">0.2238</td><td class="num">0.6393</td><td class="num">64.7%</td><td class="num">0.018</td></tr><tr><td>Model: filing facts + panel</td><td class="num">0.2235</td><td class="num">0.6389</td><td class="num">64.8%</td><td class="num">0.020</td></tr><tr><td>Gradient boosting: filing + panel</td><td class="num">0.2227</td><td class="num">0.6371</td><td class="num">65.0%</td><td class="num">0.018</td></tr></table></div>
+<ul>
+<li>Panels come from decisions held in CourtListener, which over-represent written opinions, so the panel subset
+differs from appeals in general.</li>
+<li>Data fix made before any score, as the plan allowed: 101 records whose docketing date had been overwritten at
+termination (after the argument date) were excluded.</li>
+</ul>
+
 <h2>How to verify</h2>
 <p>Every forecast, resolution and live score on this page comes from the <a href="https://github.com/docketcast/forecast-ledger">public
 ledger</a>. Each forecast record
@@ -94,7 +113,7 @@ blockchain with OpenTimestamps, which shows the forecast existed before the ruli
 <code>.ots</code> proof and its <code>.txt</code> file at <a href="https://opentimestamps.org">opentimestamps.org</a>
 (no software needed), or run <code>ots verify</code> with a Bitcoin node. New proofs read "pending" for a few
 hours until Bitcoin confirms them. Resolutions follow the frozen rules in <code>resolution_rules_v&lt;N&gt;.yaml</code>.</p>
-<footer>Generated 2026-09-23 21:47 UTC from the ledger state with latest forecast record
+<footer>Generated 2026-09-23 22:30 UTC from the ledger state with latest forecast record
 <span class="hash">54455d86bec0287b</span> and latest resolution record
 <span class="hash">(empty)</span>. Rebuild it from the ledger with the public code to check.</footer>
 </main></body></html>
