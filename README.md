@@ -5,6 +5,9 @@ each published **before** the ruling. Its purpose is a track record anyone can
 verify: that each forecast existed before the decision, and that none has been
 edited or removed since.
 
+**Scoreboard:** https://docketcast.github.io/forecast-ledger/ (rebuilt from this
+repository in every publishing commit; source in `docs/`).
+
 **Informational only.** Nothing here is legal, financial, trading or investment
 advice, or a recommendation to take any action.
 
