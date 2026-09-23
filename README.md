@@ -21,6 +21,7 @@ advice, or a recommendation to take any action.
 | `resolution_rules_v<N>.yaml` | Every frozen version. Each forecast records the version it is resolved under. |
 | `batches/*.txt`, `*.ots` | Record hashes for each publishing batch, with OpenTimestamps proofs. |
 | `verify.py` | Hash-chain verifier (Python standard library only). |
+| `preregistration/` | Evaluation plans published, and timestamped, before their results exist. |
 
 Each forecast records the case, checkpoint (`cert_granted`, `briefs_filed`,
 `post_argument`), UTC timestamp, probability, target, model version, feature
