@@ -1,0 +1,88 @@
+{
+  "generated_at": "2026-09-24T00:10:46+00:00",
+  "code_commit": "9dca2d80db70b51a323e79c2b2fdf798f3cad0df",
+  "preregistered_code_commit": "1f4d5fc86c55d61c6f780de7bdfcf5c052389acb",
+  "n_test_cases": 1101,
+  "test_terms": [
+    2008,
+    2025
+  ],
+  "pooled": {
+    "base_overall": {
+      "brier": 0.2128859275276835,
+      "accuracy": 0.695731153496821,
+      "ece": 0.03146676750845312
+    },
+    "logit_m2": {
+      "brier": 0.20028319761901145,
+      "accuracy": 0.7020890099909174,
+      "ece": 0.04330873313608227
+    },
+    "logit_m7": {
+      "brier": 0.19891530983351274,
+      "accuracy": 0.7166212534059946,
+      "ece": 0.04350373887073676
+    },
+    "gbm_m7": {
+      "brier": 0.1933367934260066,
+      "accuracy": 0.709355131698456,
+      "ece": 0.036884700127566006
+    }
+  },
+  "comparisons": [
+    {
+      "model": "logit_m7",
+      "vs": "logit_m2",
+      "score": "brier",
+      "diff": -0.001367887785498706,
+      "ci_lo": -0.0035500175421611852,
+      "ci_hi": 0.0008731113107005845
+    },
+    {
+      "model": "logit_m7",
+      "vs": "logit_m2",
+      "score": "log_loss",
+      "diff": 0.00038267574111827685,
+      "ci_lo": -0.006302402587126055,
+      "ci_hi": 0.0071580380412137835
+    },
+    {
+      "model": "logit_m7",
+      "vs": "base_overall",
+      "score": "brier",
+      "diff": -0.013970617694170767,
+      "ci_lo": -0.022399167193111236,
+      "ci_hi": -0.0041877917566816095
+    },
+    {
+      "model": "logit_m7",
+      "vs": "base_overall",
+      "score": "log_loss",
+      "diff": -0.025294125991099703,
+      "ci_lo": -0.04909343340594165,
+      "ci_hi": 0.0007453567431215618
+    },
+    {
+      "model": "gbm_m7",
+      "vs": "gbm_m2",
+      "score": "brier",
+      "diff": -0.0076218004046597065,
+      "ci_lo": -0.015463287657291236,
+      "ci_hi": 0.0006674529917798272
+    },
+    {
+      "model": "gbm_m7",
+      "vs": "gbm_m2",
+      "score": "log_loss",
+      "diff": -0.01676988920260225,
+      "ci_lo": -0.036434408320395364,
+      "ci_hi": 0.002779085240457643
+    }
+  ],
+  "prescore_fixes": [
+    "Transcript page footers in capitals were not filtered, splitting some section headers.",
+    "Parties arguing without a stated side (e.g. 'on behalf of the United States') are assigned by argument order: the petitioner argues first.",
+    "Amicus arguments 'in support of the judgment below' count for the respondent.",
+    "Address lines ('Suite 400') inside section headers are filtered."
+  ]
+}

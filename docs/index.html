@@ -104,6 +104,16 @@ differs from appeals in general.</li>
 termination (after the argument date) were excluded.</li>
 </ul>
 
+<h2>Historical backtest: oral argument transcripts</h2>
+<div class="banner">Not part of the live record. Plan
+<a href="https://github.com/docketcast/forecast-ledger/blob/main/preregistration/m7-transcripts-backtest.md">pre-registered</a> and timestamped before
+any result. Supreme Court terms 2008–2025, 1,101 cases, forecasting 14 days after argument.</div>
+<p><b>Did not meet the pre-registered success criterion.</b> Adding the justices' questions to
+each side to the M2 model changed the Brier score by -0.0014 [-0.0036, +0.0009], which includes zero.
+The M2 model remains the published model and no post-argument forecasts are made.
+Gradient boosting (secondary) changed it by -0.0076 [-0.0155, +0.0007].</p>
+<p class="note">Parser fixes made before any M7 score, as the plan allowed:</p><ul><li>Transcript page footers in capitals were not filtered, splitting some section headers.</li><li>Parties arguing without a stated side (e.g. &#x27;on behalf of the United States&#x27;) are assigned by argument order: the petitioner argues first.</li><li>Amicus arguments &#x27;in support of the judgment below&#x27; count for the respondent.</li><li>Address lines (&#x27;Suite 400&#x27;) inside section headers are filtered.</li></ul>
+
 <h2>How to verify</h2>
 <p>Every forecast, resolution and live score on this page comes from the <a href="https://github.com/docketcast/forecast-ledger">public
 ledger</a>. Each forecast record
@@ -113,7 +123,7 @@ blockchain with OpenTimestamps, which shows the forecast existed before the ruli
 <code>.ots</code> proof and its <code>.txt</code> file at <a href="https://opentimestamps.org">opentimestamps.org</a>
 (no software needed), or run <code>ots verify</code> with a Bitcoin node. New proofs read "pending" for a few
 hours until Bitcoin confirms them. Resolutions follow the frozen rules in <code>resolution_rules_v&lt;N&gt;.yaml</code>.</p>
-<footer>Generated 2026-09-23 22:30 UTC from the ledger state with latest forecast record
+<footer>Generated 2026-09-24 00:10 UTC from the ledger state with latest forecast record
 <span class="hash">54455d86bec0287b</span> and latest resolution record
 <span class="hash">(empty)</span>. Rebuild it from the ledger with the public code to check.</footer>
 </main></body></html>
