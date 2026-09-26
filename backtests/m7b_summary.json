@@ -1,0 +1,125 @@
+{
+  "milestone": "m7b",
+  "generated_at": "2026-09-26T01:07:56+00:00",
+  "code_commit": "f1e6108a3517f47f2c402038788ce7c1f41e4a99",
+  "preregistered_code_commit": "96c65e29862a8a954cfc613a2c7751ef6652a079",
+  "n_test_cases": 1101,
+  "test_terms": [
+    2008,
+    2025
+  ],
+  "gate": {
+    "n": 20000,
+    "agreement": 0.8333,
+    "majority_class_rate": 0.6343,
+    "recall_challenges": 0.9001,
+    "recall_neutral": 0.7807,
+    "recall_supports": 0.1805,
+    "passed": true
+  },
+  "pooled": {
+    "base_overall": {
+      "brier": 0.2128859275276835,
+      "accuracy": 0.695731153496821,
+      "ece": 0.03146676750845312
+    },
+    "logit_m2": {
+      "brier": 0.20028319761901145,
+      "accuracy": 0.7020890099909174,
+      "ece": 0.04330873313608227
+    },
+    "logit_m7b": {
+      "brier": 0.1863362702856682,
+      "accuracy": 0.7211625794732062,
+      "ece": 0.030234819566340006
+    },
+    "gbm_m7b": {
+      "brier": 0.18110436066684799,
+      "accuracy": 0.7356948228882834,
+      "ece": 0.038031075538963635
+    }
+  },
+  "comparisons": [
+    {
+      "model": "logit_m7b",
+      "vs": "logit_m2",
+      "diff": -0.01394692733334324,
+      "ci_lo": -0.019608629813945216,
+      "ci_hi": -0.008155613362434448,
+      "score": "brier"
+    },
+    {
+      "model": "logit_m7b",
+      "vs": "logit_m2",
+      "diff": -0.03191646597181552,
+      "ci_lo": -0.04830486556297699,
+      "ci_hi": -0.014964914010123252,
+      "score": "log_loss"
+    },
+    {
+      "model": "logit_m7b",
+      "vs": "base_overall",
+      "diff": -0.0265496572420153,
+      "ci_lo": -0.036407920141091954,
+      "ci_hi": -0.01625133463645567,
+      "score": "brier"
+    },
+    {
+      "model": "logit_m7b",
+      "vs": "base_overall",
+      "diff": -0.0575932677040335,
+      "ci_lo": -0.08673627041555154,
+      "ci_hi": -0.02865750435454625,
+      "score": "log_loss"
+    },
+    {
+      "model": "gbm_m7b",
+      "vs": "gbm_m2",
+      "diff": -0.01985423316381832,
+      "ci_lo": -0.028186723762261702,
+      "ci_hi": -0.011125569447013393,
+      "score": "brier"
+    },
+    {
+      "model": "gbm_m7b",
+      "vs": "gbm_m2",
+      "diff": -0.050659307395889086,
+      "ci_lo": -0.07076372909556561,
+      "ci_hi": -0.02931423304263571,
+      "score": "log_loss"
+    }
+  ],
+  "without_duplicate_cases": {
+    "model": "logit_m7b",
+    "vs": "logit_m2",
+    "diff": -0.014021282133716034,
+    "ci_lo": -0.019814710852099293,
+    "ci_hi": -0.008196584292864335,
+    "n": 1099
+  },
+  "after_labeller_cutoff": {
+    "cutoff": "2026-04-30",
+    "n": 28,
+    "brier_diff_vs_m2": -0.026278472535073344
+  },
+  "recall_test": {
+    "n": 781,
+    "recall_accuracy": 0.991,
+    "always_petitioner_accuracy": 0.6914,
+    "diff": 0.2996,
+    "ci": [
+      0.2641,
+      0.3346
+    ],
+    "recognised_share": 1.0,
+    "contamination_detected": true,
+    "cases_in_test": 1103
+  },
+  "disclosures": [
+    "Two cases appear twice in the case table (also in the published M2 and M7 backtests); the result without them is reported alongside.",
+    "Labelling answers were capped at 100 tokens to fit the budget; 72 of 20,000 were cut off by the model's reasoning and retried once with a 1,000-token limit (same model and prompt). All were labelled.",
+    "The recall test stopped when the OpenAI account's prepaid credit ran out; it is reported on the cases answered.",
+    "Code added after the pre-registered commit: the command that runs training and the gate, optional experiment tracking, and the label-retry option. None changes a pre-registered setting."
+  ],
+  "note": "Cross-fitting let labels about later cases reach classifiers that scored earlier cases; with contamination detected, M7c repeats the analysis with time-ordered classifiers."
+}

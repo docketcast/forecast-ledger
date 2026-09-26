@@ -114,6 +114,26 @@ The M2 model remains the published model and no post-argument forecasts are made
 Gradient boosting (secondary) changed it by -0.0076 [-0.0155, +0.0007].</p>
 <p class="note">Parser fixes made before any M7 score, as the plan allowed:</p><ul><li>Transcript page footers in capitals were not filtered, splitting some section headers.</li><li>Parties arguing without a stated side (e.g. &#x27;on behalf of the United States&#x27;) are assigned by argument order: the petitioner argues first.</li><li>Amicus arguments &#x27;in support of the judgment below&#x27; count for the respondent.</li><li>Address lines (&#x27;Suite 400&#x27;) inside section headers are filtered.</li></ul>
 
+<h2>Historical backtest: question stance (M7B)</h2>
+<div class="banner">Not part of the live record. Plan
+<a href="https://github.com/docketcast/forecast-ledger/blob/main/preregistration/m7b-question-stance-backtest.md">pre-registered</a> and timestamped before
+any result. Supreme Court terms 2008–2025, 1,101 cases, forecasting 14 days after argument.
+Each justice's question was labelled by a language model (challenging, neutral or supportive of the lawyer
+arguing) and our own classifier, trained on those labels, scored every question.</div>
+<p><b>Met the pre-registered success criterion.</b> Adding question stance to
+the M2 model changed the Brier score by -0.0139 [-0.0196, -0.0082]. Gradient boosting
+(secondary) changed it by -0.0199 [-0.0282, -0.0111]. Because contamination was detected, M7b is not adopted; M7c repeats the analysis so that labels about later cases cannot reach earlier forecasts.</p>
+<p><b>Contamination check: detected.</b> Given only the case name,
+the labelling model named the winner of 99.1% of 781 past cases, against
+69.1% for always answering "petitioner". On the 28 cases decided after
+its knowledge cutoff (2026-04-30) the change against M2 was -0.0263 (too few
+cases for a test).</p>
+<p class="note">Classifier quality gate: 83.3% agreement with the labeller on questions it was
+not trained on (threshold 75%). Without the two duplicated cases the primary result is
+-0.0140 [-0.0198, -0.0082].</p>
+<p class="note">Disclosures:</p><ul><li>Two cases appear twice in the case table (also in the published M2 and M7 backtests); the result without them is reported alongside.</li><li>Labelling answers were capped at 100 tokens to fit the budget; 72 of 20,000 were cut off by the model&#x27;s reasoning and retried once with a 1,000-token limit (same model and prompt). All were labelled.</li><li>The recall test stopped when the OpenAI account&#x27;s prepaid credit ran out; it is reported on the cases answered.</li><li>Code added after the pre-registered commit: the command that runs training and the gate, optional experiment tracking, and the label-retry option. None changes a pre-registered setting.</li></ul>
+
+
 <h2>How to verify</h2>
 <p>Every forecast, resolution and live score on this page comes from the <a href="https://github.com/docketcast/forecast-ledger">public
 ledger</a>. Each forecast record
@@ -123,7 +143,7 @@ blockchain with OpenTimestamps, which shows the forecast existed before the ruli
 <code>.ots</code> proof and its <code>.txt</code> file at <a href="https://opentimestamps.org">opentimestamps.org</a>
 (no software needed), or run <code>ots verify</code> with a Bitcoin node. New proofs read "pending" for a few
 hours until Bitcoin confirms them. Resolutions follow the frozen rules in <code>resolution_rules_v&lt;N&gt;.yaml</code>.</p>
-<footer>Generated 2026-09-24 00:10 UTC from the ledger state with latest forecast record
+<footer>Generated 2026-09-26 01:07 UTC from the ledger state with latest forecast record
 <span class="hash">54455d86bec0287b</span> and latest resolution record
 <span class="hash">(empty)</span>. Rebuild it from the ledger with the public code to check.</footer>
 </main></body></html>
